@@ -6,11 +6,11 @@ from app import app, data
 @pytest.fixture
 def client():
     """Create a test client for the Flask app"""
+    # Clear data before each test to ensure clean state
+    data.clear()
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
-    # Clear data after each test
-    data.clear()
 
 
 @pytest.fixture
